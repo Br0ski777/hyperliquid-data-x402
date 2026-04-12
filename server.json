@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.Br0ski777/hyperliquid-data",
+  "title": "Hyperliquid Perp Market Data API",
+  "description": "Hyperliquid perp order book, prices, funding, OI, candles. x402 paid.",
+  "version": "1.0.0",
+  "websiteUrl": "https://github.com/Br0ski777/hyperliquid-data-x402",
+  "repository": {
+    "url": "https://github.com/Br0ski777/hyperliquid-data-x402",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "sse",
+      "url": "https://hyperliquid-data-x402-production.up.railway.app/mcp"
+    }
+  ]
+}
