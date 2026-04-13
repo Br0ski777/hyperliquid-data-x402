@@ -37,6 +37,53 @@ Do NOT use for EVM gas -- use gas_get_current_price. Do NOT use for spot DEX quo
         },
         required: ["coin"],
       },
+      outputSchema: {
+          "type": "object",
+          "properties": {
+            "coin": {
+              "type": "string"
+            },
+            "bids": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "price": {
+                    "type": "string"
+                  },
+                  "size": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "asks": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "price": {
+                    "type": "string"
+                  },
+                  "size": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "midPrice": {
+              "type": "number"
+            },
+            "spread": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "coin",
+            "bids",
+            "asks"
+          ]
+        },
     },
     {
       method: "GET",
@@ -60,6 +107,40 @@ Do NOT use for a single coin order book -- use hyperliquid_get_market_data. Do N
         type: "object",
         properties: {},
       },
+      outputSchema: {
+          "type": "object",
+          "properties": {
+            "markets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "coin": {
+                    "type": "string"
+                  },
+                  "midPrice": {
+                    "type": "number"
+                  },
+                  "markPrice": {
+                    "type": "number"
+                  },
+                  "fundingRate": {
+                    "type": "number"
+                  },
+                  "openInterest": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "count": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "markets"
+          ]
+        },
     },
     {
       method: "GET",
@@ -98,6 +179,50 @@ Do NOT use for real-time order book -- use hyperliquid_get_market_data. Do NOT u
         },
         required: ["coin"],
       },
+      outputSchema: {
+          "type": "object",
+          "properties": {
+            "coin": {
+              "type": "string"
+            },
+            "interval": {
+              "type": "string"
+            },
+            "candles": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "timestamp": {
+                    "type": "number"
+                  },
+                  "open": {
+                    "type": "number"
+                  },
+                  "high": {
+                    "type": "number"
+                  },
+                  "low": {
+                    "type": "number"
+                  },
+                  "close": {
+                    "type": "number"
+                  },
+                  "volume": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "count": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "coin",
+            "candles"
+          ]
+        },
     },
   ],
 };
