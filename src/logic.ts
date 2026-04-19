@@ -1,5 +1,20 @@
 import type { Hono } from "hono";
 
+
+// ATXP: requirePayment only fires inside an ATXP context (set by atxpHono middleware).
+// For raw x402 requests, the existing @x402/hono middleware handles the gate.
+// If neither protocol is active (ATXP_CONNECTION unset), tryRequirePayment is a no-op.
+async function tryRequirePayment(price: number): Promise<void> {
+  if (!process.env.ATXP_CONNECTION) return;
+  try {
+    const { requirePayment } = await import("@atxp/server");
+    const BigNumber = (await import("bignumber.js")).default;
+    await requirePayment({ price: BigNumber(price) });
+  } catch (e: any) {
+    if (e?.code === -30402) throw e;
+  }
+}
+
 // --- Cache ---
 interface CacheEntry {
   data: any;
@@ -40,6 +55,7 @@ const VALID_INTERVALS = ["1m", "3m", "5m", "15m", "30m", "1h", "2h", "4h", "8h",
 export function registerRoutes(app: Hono) {
   // GET /api/orderbook?coin=BTC
   app.get("/api/orderbook", async (c) => {
+    await tryRequirePayment(0.001);
     const coin = c.req.query("coin")?.toUpperCase();
     if (!coin) {
       return c.json(
@@ -104,6 +120,7 @@ export function registerRoutes(app: Hono) {
 
   // GET /api/markets
   app.get("/api/markets", async (c) => {
+    await tryRequirePayment(0.001);
     const cacheKey = "markets_all";
     const cached = getCached<any>(cacheKey, 2_000);
     if (cached) return c.json(cached);
@@ -162,6 +179,7 @@ export function registerRoutes(app: Hono) {
 
   // GET /api/candles?coin=BTC&interval=1h&limit=100
   app.get("/api/candles", async (c) => {
+    await tryRequirePayment(0.002);
     const coin = c.req.query("coin")?.toUpperCase();
     const interval = c.req.query("interval") || "1h";
     const limit = Math.min(parseInt(c.req.query("limit") || "100", 10), 5000);
