@@ -12,7 +12,7 @@
   "remotes": [
     {
       "type": "sse",
-      "url": "https://hyperliquid-data-x402-production.up.railway.app/mcp"
+      "url": "https://hyperliquid-data.api.klymax402.com/mcp"
     }
   ]
 }
