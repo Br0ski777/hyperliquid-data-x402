@@ -3,7 +3,7 @@
   "name": "io.github.Br0ski777/hyperliquid-data",
   "title": "Hyperliquid Perp Market Data API",
   "description": "Hyperliquid perp order book, prices, funding, OI, candles. x402 paid.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "websiteUrl": "https://github.com/Br0ski777/hyperliquid-data-x402",
   "repository": {
     "url": "https://github.com/Br0ski777/hyperliquid-data-x402",
