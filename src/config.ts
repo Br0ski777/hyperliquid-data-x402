@@ -9,7 +9,7 @@ export const API_CONFIG: ApiConfig = {
     {
       method: "GET",
       path: "/api/orderbook",
-      price: "$0.001",
+      price: "$0.003",
       description: "L2 order book for a Hyperliquid perp pair",
       toolName: "hyperliquid_get_market_data",
       toolDescription: `Use this when you need Hyperliquid perpetual futures data for a specific coin. Returns full L2 order book depth with real-time pricing and funding metrics in one call.
@@ -88,7 +88,7 @@ Do NOT use for EVM gas -- use gas_get_current_price. Do NOT use for spot DEX quo
     {
       method: "POST",
       path: "/api/orderbook",
-      price: "$0.001",
+      price: "$0.003",
       description: "L2 order book for a Hyperliquid perp pair (POST variant)",
       toolName: "hyperliquid_get_market_data",
       toolDescription: `Use this when you need Hyperliquid perpetual futures data for a specific coin. Returns full L2 order book depth with real-time pricing and funding metrics in one call. POST variant of hyperliquid_get_market_data -- same params passed as JSON body instead of query string.
@@ -167,7 +167,7 @@ Do NOT use for EVM gas -- use gas_get_current_price. Do NOT use for spot DEX quo
     {
       method: "GET",
       path: "/api/markets",
-      price: "$0.001",
+      price: "$0.003",
       description: "All mid prices, funding rates, OI, volume for every Hyperliquid asset",
       toolName: "hyperliquid_get_all_markets",
       toolDescription: `Use this when you need a snapshot of all Hyperliquid perpetual markets at once. Returns pricing, funding, and volume data for every listed asset in a single call.
@@ -224,7 +224,7 @@ Do NOT use for a single coin order book -- use hyperliquid_get_market_data. Do N
     {
       method: "POST",
       path: "/api/markets",
-      price: "$0.001",
+      price: "$0.003",
       description: "All mid prices, funding rates, OI, volume for every Hyperliquid asset (POST variant)",
       toolName: "hyperliquid_get_all_markets",
       toolDescription: `Use this when you need a snapshot of all Hyperliquid perpetual markets at once. Returns pricing, funding, and volume data for every listed asset in a single call. POST variant of hyperliquid_get_all_markets -- same params passed as JSON body instead of query string.
